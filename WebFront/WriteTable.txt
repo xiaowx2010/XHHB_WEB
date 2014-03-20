@@ -1,0 +1,135 @@
+CREATE       PROCEDURE dbo.WriteTable
+(
+	@cateid int=0,
+	@sitecode int=0,
+	@timers varchar(50)=null,
+	@timere varchar(50)=null
+)
+ AS
+set nocount on
+declare @sql nvarchar(500)
+declare @haschcontentfield int 
+declare @haschtopicfield int 
+if @cateid>0
+begin
+	
+	create table #tblx0 (chcode int,chtopic nvarchar(255),chcontent text,chlastdate smalldatetime,chcount int,chid int,chall text)
+	declare @datatablename varchar(50)
+	select @datatablename=datatablename from gcms_channel where channelcode=@cateid
+	select @haschcontentfield=count(fieldcode) from gcms_field where channelcode=@cateid and fieldname='CHContent'
+	select @haschtopicfield=count(fieldcode) from gcms_field where channelcode=@cateid and fieldname='CHTopic'
+	set @sql=N'insert into #tblx0 (chcode,chtopic,chcontent,chlastdate,chcount,chid) '
+	set @sql=@sql + ' SELECT chcode,chtopic,chcontent,chdate,0,'+cast(@cateid as varchar(10))+' as chid FROM ' + @datatablename + ' where 1=1 and chstate=0'
+		
+	if @timers is not null and @timers<>''
+	begin
+		set @sql=@sql + ' and chdate>'''+@timers+''''
+	end
+	if @timere is not null and @timere<>''
+	begin
+		set @sql=@sql + ' and chdate<'''+@timere+''''
+	end
+	set @sql=@sql + ' order by chlastdate desc '
+		
+                           if  @haschcontentfield>0 and @haschtopicfield>0
+                           begin
+                           print @sql
+	      	EXEC sp_executesql @sql
+                           end
+                        
+	declare @cidindex nvarchar(50)
+	select @cidindex=channelindex  from gcms_channel where channelcode=@cateid
+	DECLARE tnames_cursor0 CURSOR
+	FOR
+	   SELECT datatablename,channelcode FROM gcms_channel where (datatablename is not null) and (datatablename <>'') and channelstate=0 and channelcode<>@cateid and ';'+channelindex+'' like '%;'+@cidindex+'%'  
+	OPEN tnames_cursor0
+	DECLARE @tablename0 sysname
+	DECLARE @chid0 int
+	FETCH NEXT FROM tnames_cursor0 INTO @tablename0,@chid0	
+	WHILE (@@FETCH_STATUS <> -1)
+	BEGIN
+	   IF (@@FETCH_STATUS <> -2)
+	   BEGIN   
+	      	SELECT @tablename0 = RTRIM(@tablename0) 
+		select @chid0=@chid0
+		select @haschcontentfield=count(fieldcode) from gcms_field where channelcode=@chid0 and fieldname='CHContent'	
+                          select @haschtopicfield=count(fieldcode) from gcms_field where channelcode=@chid0 and fieldname='CHTopic'	
+      		set @sql=N'insert into #tblx0 (chcode,chtopic,chcontent,chlastdate,chcount,chid) '
+		set @sql=@sql + ' SELECT chcode,chtopic,chcontent,chdate,0,'+cast(@chid0 as varchar(10))+' as chid FROM ' + @tablename0 + ' where 1=1 and chstate=0'
+		
+	if @timers is not null and @timers<>''
+	begin
+		set @sql=@sql + ' and chdate>'''+@timers+''''
+	end
+	if @timere is not null and @timere<>''
+	begin
+		set @sql=@sql + ' and chdate<'''+@timere+''''
+	end
+	set @sql=@sql + ' order by chlastdate desc '
+                    
+                           if  @haschcontentfield>0 and @haschtopicfield>0
+                           begin
+                           print @sql
+	      	EXEC sp_executesql @sql
+                           end
+                         
+	   END
+	   FETCH NEXT FROM tnames_cursor0 INTO @tablename0,@chid0
+	END
+	CLOSE tnames_cursor0
+	DEALLOCATE tnames_cursor0
+	set @sql=N'select chid,chcode,chtopic,chcontent,chlastdate,chcount from #tblx0 order by chlastdate desc,chcode desc'
+	print @sql
+	exec sp_executesql @sql
+	drop table #tblx0
+end
+else
+begin
+	DECLARE tnames_cursor CURSOR
+	FOR
+	   SELECT datatablename,channelcode FROM gcms_channel where (datatablename is not null) and (datatablename <>'') and channelstate=0  and sitecode=@sitecode
+	OPEN tnames_cursor
+	DECLARE @tablename sysname
+	DECLARE @chid int
+	FETCH NEXT FROM tnames_cursor INTO @tablename,@chid
+	create table #tblx (chcode int,chtopic nvarchar(500),chcontent text,chlastdate smalldatetime,chcount int,chid int,chall text)
+	WHILE (@@FETCH_STATUS <> -1)
+	BEGIN
+	   IF (@@FETCH_STATUS <> -2)
+	   BEGIN   
+	      	SELECT @tablename = RTRIM(@tablename) 
+		select @chid=@chid
+		select @haschcontentfield=count(fieldcode) from gcms_field where channelcode=@chid and fieldname='CHContent'	
+		select @haschtopicfield=count(fieldcode) from gcms_field where channelcode=@chid and fieldname='CHTopic'                               
+                          	 set @sql=N'insert into #tblx (chcode,chtopic,chcontent,chlastdate,chcount,chid) '
+		 set @sql=@sql + ' SELECT chcode,chtopic,chcontent ,chdate,0,'+cast(@chid as varchar(10))+' as chid FROM ' + @tablename + ' where 1=1  and chstate=0 '                                              
+                         		
+			
+		if @timers is not null and @timers<>''
+		begin
+		set @sql=@sql + ' and chdate>'''+@timers+''''
+		end
+		if @timere is not null and @timere<>''
+		begin
+		set @sql=@sql + ' and chdate<'''+@timere+''''
+		end
+		set @sql=@sql + ' order by chlastdate desc,chcode desc '		
+	          
+                           if  @haschcontentfield>0 and @haschtopicfield>0
+                           begin
+                           print @sql
+	      	EXEC sp_executesql @sql
+                           end
+                        
+	   END
+	   FETCH NEXT FROM tnames_cursor INTO @tablename,@chid
+	END
+	CLOSE tnames_cursor
+	DEALLOCATE tnames_cursor
+	set @sql=N'select chid,chcode,chtopic, chcontent,chlastdate,chcount from #tblx order by chlastdate desc,chcode desc'
+	print @sql
+	exec sp_executesql @sql
+	drop table #tblx
+end
+return
+GO

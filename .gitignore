@@ -1,0 +1,15 @@
+*.rar
+*.ldf
+*.mdf
+*.tmp
+2010data/
+data/
+.idea/
+init_table.aspx
+gcms/
+gmap/
+temp/
+aspnet_client/
+data/
+test/
+bin/
