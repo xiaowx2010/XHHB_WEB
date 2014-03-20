@@ -83,7 +83,7 @@ function SetHome(obj,vrl){
     <td width="2"><img src="images/de_top_004.gif" width="2" height="39"></td>
     <td align="center"><a href="/webfront/default.aspx">&nbsp;首   页&nbsp;</a></td>
     <td width="2"><img src="images/de_top_007.gif" width="2" height="39"></td>
-    <td align="center"><a href="redirect.aspx?cid=3">信息公开</a></td>
+    <td align="center"><a href="redirect.aspx?cid=999">环境影响评价</a></td>
     <td width="2"><img src="images/de_top_007.gif" width="2" height="39"></td>
     <td align="center"><a href="sub_3nxdjh.aspx?cid=48">三年行动计划</a></td>
     <td width="2"><img src="images/de_top_007.gif" width="2" height="39"></td>

@@ -87,7 +87,9 @@
 			case "70":
 				Response.Redirect("sub_shiping.aspx?cid="+cid);
 				break;
-			
+			case "999":
+			    Response.Redirect("sub_hjyxpj.aspx?cid=999&stype=hpsl");
+			    break;
 			default:				
 				Response.Redirect("sub_newslist.aspx?cid="+cid);				
 				break; 

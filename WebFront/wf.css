@@ -346,3 +346,19 @@ a:hover{color:#FF6600;}
 .intro_xxgk_iframe{background:url(images/intro_M_bg.jpg) top repeat-x; padding-top:10px;}
 .intro_xxgk_iframe ul{margin:0px auto; width:1000px; height:600px; float:left;}
 .intro_xxgk_iframe ul li{float:left; width:100%;}
+
+/*2014-03-17*/
+.sub_xxgk_hpsp{}
+.sub_xxgk_hpsp .bt{margin-top:10px; font-weight:bold; font-size:20px; line-height:30px; color:#535353; text-align:center;}
+.sub_xxgk_hpsp .nr{margin-top:10px; font-size:14px; line-height:30px; color:#1E1E1E;}
+
+.sub_xxgk_hpsp_tab{margin-top:10px;}
+.sub_xxgk_hpsp_tab .fl{background:url(images/tab-b-g.png) bottom repeat-x; background-color:#ffffff;}
+.sub_xxgk_hpsp_tab .txt_01{padding:5px; text-align:center; font-size:12px; font-weight:bold; height:32px; color:#29A21F; line-height:16px;}
+.sub_xxgk_hpsp_tab .bg_01{background-color:#ffffff;}
+.sub_xxgk_hpsp_tab .bg_02{background-color:#F7FEEC;}
+.sub_xxgk_hpsp_tab .txt_02{padding:5px; text-align:center; height:32px; line-height:16px; color:#666666;}
+.sub_xxgk_hpsp_tab .txt_02 a{color:#666666; text-decoration:underline;}
+.sub_xxgk_hpsp_tab .txt_02 a:hover{color:#ff6600;}
+
+.sub_xxgk_hpsp .zm{margin-top:10px; font-size:12px; line-height:25px; color:#666666;}
