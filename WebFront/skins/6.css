@@ -4,3 +4,11 @@
 	height: 26px;
 	width: 228px;
 }
+
+.paginate_active{
+    color:#F60C16;
+}
+
+.dataTables_length{
+    display:none;
+}

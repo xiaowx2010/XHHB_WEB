@@ -16,10 +16,15 @@
 		private void Page_Load(object sender,System.EventArgs e)
 		{
 			cid = GetQueryString("cid","0");
+		    if (HttpContext.Current.Session["Redirect"] == null)
+		    {
+		        Response.Redirect("sub_xxgk_gateway.aspx?cid="+cid);
+		    }
+//            Session.Remove("Redirect");
+
 			id = GetQueryString("id","0");
 			HeadXuHui.ChannelCode=cid;
 			TraceUpXuHui.ChannelCode=cid;
-
 
 //			ListBoxlb.SqlStr="select "+cid+",chcode,chtopic,cast(datepart(year,chputdate) as varchar(50))+'-'+(Case When datepart(month,chputdate)<10 Then '0' Else '' End)+cast(datepart(month,chputdate) as varchar(50))+'-'+(Case When datepart(day,chputdate)<10 Then '0' Else '' End)+cast(datepart(day,chputdate) as varchar(50)) as chdate from "+GetChannelDataTableName(cid)+" where chstate=0 order by chputdate desc";
 
@@ -34,75 +39,19 @@
    <div class="main nk">
     <div class="main box sub_lmys_001">
 	 <dl>
-	  <dt>建设项目环境影响评价受理信息公示</dt>
+	  <dt><%=GetXXGKStrByID(cid)%></dt>
 	  <dd></dd>
 	 </dl>
 	</div>
-
-	<!--
-	<div class="main box sub_xxgk_cxjg">
-	 <ul><li>查询结果</li></ul>
-	</div>
-    -->
-
 	<div class="main box sub_xxgk_hpsp">
-     <div class="main box bt">建设项目环境影响评价受理信息公示</div>
+     <div class="main box bt"><%=GetXXGKStrByID(cid)%></div>
 	 <div class="main box sub_xxgk_hpsp_tab">
       <table width="100%"  border="0" cellpadding="5" cellspacing="1" bgcolor="#71BE5E">
         <tr class="fl">
-          <td width="144" class="txt_01">项目名称</td>
-          <td width="130" class="txt_01">建设地点</td>
-          <td width="70" class="txt_01">建设单位</td>
-          <td class="txt_01">环评形式</td>
-          <td width="82" class="txt_01">环境影响评价机构</td>
-          <td width="88" class="txt_01">公示时间</td>
-          <td width="66" class="txt_01">公示状态</td>
+          <%=GetDataTableHeaderStr(cid)%>
         </tr>
-        <tr class="bg_01">
-          <td class="txt_02"><a href="#">宝嘉公路（宝山段）道路新建工程</a></td>
-          <td class="txt_02">宝山区/县罗店镇西起宝山嘉定区界，东至沪太公路与月罗公路衔接处</td>
-          <td class="txt_02">上海市宝山区重大工程建设指挥部</td>
-          <td class="txt_02">环境影响报告书</td>
-          <td class="txt_02">上海船舶运输科学研究所</td>
-          <td class="txt_02">2014-03-12~2014-03-26</td>
-          <td class="txt_02">已过期</td>
-        </tr>
-		<tr class="bg_02">
-          <td class="txt_02"><a href="#">宝嘉公路（宝山段）道路新建工程</a></td>
-          <td class="txt_02">宝山区/县罗店镇西起宝山嘉定区界，东至沪太公路与月罗公路衔接处</td>
-          <td class="txt_02">上海市宝山区重大工程建设指挥部</td>
-          <td class="txt_02">环境影响报告书</td>
-          <td class="txt_02">上海船舶运输科学研究所</td>
-          <td class="txt_02">2014-03-12~2014-03-26</td>
-          <td class="txt_02">已过期</td>
-        </tr>
-		<tr class="bg_01">
-          <td class="txt_02"><a href="#">宝嘉公路（宝山段）道路新建工程</a></td>
-          <td class="txt_02">宝山区/县罗店镇西起宝山嘉定区界，东至沪太公路与月罗公路衔接处</td>
-          <td class="txt_02">上海市宝山区重大工程建设指挥部</td>
-          <td class="txt_02">环境影响报告书</td>
-          <td class="txt_02">上海船舶运输科学研究所</td>
-          <td class="txt_02">2014-03-12~2014-03-26</td>
-          <td class="txt_02">已过期</td>
-        </tr>
-		<tr class="bg_02">
-          <td class="txt_02"><a href="#">宝嘉公路（宝山段）道路新建工程</a></td>
-          <td class="txt_02">宝山区/县罗店镇西起宝山嘉定区界，东至沪太公路与月罗公路衔接处</td>
-          <td class="txt_02">上海市宝山区重大工程建设指挥部</td>
-          <td class="txt_02">环境影响报告书</td>
-          <td class="txt_02">上海船舶运输科学研究所</td>
-          <td class="txt_02">2014-03-12~2014-03-26</td>
-          <td class="txt_02">已过期</td>
-        </tr>
-		<tr class="bg_01">
-          <td class="txt_02"><a href="#">宝嘉公路（宝山段）道路新建工程</a></td>
-          <td class="txt_02">宝山区/县罗店镇西起宝山嘉定区界，东至沪太公路与月罗公路衔接处</td>
-          <td class="txt_02">上海市宝山区重大工程建设指挥部</td>
-          <td class="txt_02">环境影响报告书</td>
-          <td class="txt_02">上海船舶运输科学研究所</td>
-          <td class="txt_02">2014-03-12~2014-03-26</td>
-          <td class="txt_02">已过期</td>
-        </tr>
+        <%=GetDataTabeContent(cid)%>
+
       </table>
 	  </div>
 	  <div class="main box zm">
@@ -120,16 +69,12 @@
    <div class="main Righttree">
     <ul>
      <li><a href="#" class="dq">环评审批公告</a></li>
-	 <dl><dt><a href="#">建设项目环境影响评价受理信息公示</a></dt></dl>
-	 <dl><dd><a href="#">建设项目环境影响评价拟审批公示</a></dd></dl>
-	 <dl><dd><a href="#">建设项目环境影响评价审批决定公告</a></dd></dl>
-	 <dl><dd><a href="#">建设项目竣工环境保护验收受理信息公示</a></dd></dl>
-	 <dl><dd><a href="#">建设项目竣工环境保护验收拟审批公示</a></dd></dl>
-	 <dl><dd><a href="#">建设项目竣工环境保护验收审批决定公告</a></dd></dl>
-     <li><a href="redirect.aspx?cid=58">夜间施工审批查询</a></li>
-     <li><a href="redirect.aspx?cid=82">建设项目环评公示</a></li>
-     <li><a href="redirect.aspx?cid=19">排污收费名录</a></li>
-     <li><a href="redirect.aspx?cid=20">辐射安全许可名录</a></li>
+	 <dl><dt><a href="redirect.aspx?cid=994">建设项目环境影响评价受理信息公示</a></dt></dl>
+	 <dl><dd><a href="redirect.aspx?cid=995">建设项目环境影响评价拟审批公示</a></dd></dl>
+	 <dl><dd><a href="redirect.aspx?cid=996">建设项目环境影响评价审批决定公告</a></dd></dl>
+	 <dl><dd><a href="redirect.aspx?cid=997">建设项目竣工环境保护验收受理信息公示</a></dd></dl>
+	 <dl><dd><a href="redirect.aspx?cid=998">建设项目竣工环境保护验收拟审批公示</a></dd></dl>
+	 <dl><dd><a href="redirect.aspx?cid=999">建设项目竣工环境保护验收审批决定公告</a></dd></dl>
     </ul>
    </div>
 

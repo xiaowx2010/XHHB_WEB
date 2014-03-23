@@ -88,7 +88,12 @@
 				Response.Redirect("sub_shiping.aspx?cid="+cid);
 				break;
 			case "999":
-			    Response.Redirect("sub_hjyxpj.aspx?cid=999&stype=hpsl");
+			case "998":
+			case "997":
+			case "996":
+			case "995":
+			case "994":
+			    Response.Redirect("sub_xxgk_gateway.aspx?cid="+cid);
 			    break;
 			default:				
 				Response.Redirect("sub_newslist.aspx?cid="+cid);				
