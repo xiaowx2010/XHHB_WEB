@@ -8,6 +8,9 @@
 		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
 	    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="wf.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+
 </head>
 <!--#include file="func.aspx"-->
 <!--#include file="../insql.aspx"-->
@@ -30,6 +33,34 @@
 
 		}
 	</script>
+<script type="text/javascript">
+	 $(document).ready(function () {
+        $('#content_table').dataTable({
+            "bSort" : false,
+            "iDisplayLength" : 10,
+            "bJQueryUI": false,
+            "sPaginationType": "full_numbers",
+            "sDom": '<""l>t<"F"fp>',
+            "bFilter": false,
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "对不起，查询不到任何相关数据",
+                "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+                "sInfoEmtpy": "找不到相关数据",
+                "sInfoFiltered": "数据表中共为 _MAX_ 条记录)",
+                "sProcessing": "正在加载中...",
+                "sSearch": "搜索",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious": " 上一页 ",
+                    "sNext": " 下一页 ",
+                    "sLast": " 最后一页 "
+                }
+            }
+        });
+    });
+	</script>
 <body>
 <form id="FormXuHui" runat="server">
 <!--#include file="head.aspx"-->
@@ -46,12 +77,15 @@
 	<div class="main box sub_xxgk_hpsp">
      <div class="main box bt"><%=GetChannelName(cid)%></div>
 	 <div class="main box sub_xxgk_hpsp_tab">
-      <table width="100%"  border="0" cellpadding="5" cellspacing="1" bgcolor="#71BE5E">
+      <table id="content_table" width="100%"  border="0" cellpadding="5" cellspacing="1" bgcolor="#71BE5E">
+	  <thead>
         <tr class="fl">
           <%=GetDataTableHeaderStr(cid)%>
         </tr>
+		</thead>
+		<tbody>
         <%=GetDataTabeContent(cid)%>
-
+		</tbody>
       </table>
 	  </div>
 	  <div class="main box zm">
