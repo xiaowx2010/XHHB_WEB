@@ -404,7 +404,7 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
 		        break;
 		    case "88":
 		        wherestr=" and GONGSHITYPE = '拟作出审批意见情况' ";
-		        selectstr = "SUBJECT,ADDRESS,BUILDERUNIT,HPUNIT,convert(varchar(10),GONGSHIBEGINDATE,120) as begindate,convert(varchar(10),GONGSHIENDDATE,120) as enddate,PRJPROFILE,PRJCS,CANYUQINGKUANG,ATTACH_3,SHENPIJD,YUANYIN,case when getdate()>GONGSHIENDDATE then '已失效' else '公示中' end as gkstatus";
+		        selectstr = "SUBJECT,ADDRESS,BUILDERUNIT,HPUNIT,convert(varchar(10),GONGSHIBEGINDATE,120) as begindate,convert(varchar(10),GONGSHIENDDATE,120) as enddate,PRJPROFILE,PRJCS,ATTACH_5,CANYUQINGKUANG,ATTACH_2,ATTACH_3,PRJCN,SHENPIJD,YUANYIN,case when getdate()>GONGSHIENDDATE then '已失效' else '公示中' end as gkstatus";
 		        break;
 		    case "89":
 		        wherestr=" and GONGSHITYPE = '环评项目公告' ";
@@ -424,7 +424,7 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
 		        break;
 		}
         SqlDB db = new SqlDB();
-        db.SqlString = string.Format("select {0} from sync_xxgk where 1=1 {1};",selectstr,wherestr);
+        db.SqlString = string.Format("select {0} from sync_xxgk where 1=1 {1} order by id desc;",selectstr,wherestr);
         return db.GetDataTable();
 	}
 	private string GetAttachmentPath(string filename)
@@ -452,8 +452,49 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
                 }
                 else if (cid=="88")
                 {
-                    sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}</td><td class=\"txt_02\">{7}</td><td class=\"txt_02\"><a target=\"_blank\" href=\"{12}\">点击查看</a></td><td class=\"txt_02\">{8}</td><td class=\"txt_02\">{9}</td><td class=\"txt_02\">{10}&nbsp;</td><td class=\"txt_02\">{11}</td>",
-                    dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPUNIT"].ToString(), dr["begindate"].ToString(),dr["enddate"].ToString(),dr["PRJPROFILE"].ToString(),dr["PRJCS"].ToString(),dr["CANYUQINGKUANG"].ToString(),dr["SHENPIJD"].ToString(),dr["YUANYIN"].ToString(),dr["gkstatus"].ToString(), GetAttachmentPath(dr["ATTACH_3"].ToString())));
+					sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}</td>", 
+					dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPUNIT"].ToString(), dr["begindate"].ToString(),dr["enddate"].ToString(),dr["PRJPROFILE"].ToString()));
+					if(!string.IsNullOrEmpty(dr["ATTACH_5"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_5"].ToString())));
+					}
+					else if(!string.IsNullOrEmpty(dr["PRJCS"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["PRJCS"].ToString()));
+					}
+					else
+					{
+						sb.Append("<td class=\"txt_02\">&nbsp;</td>");
+					}
+					if(!string.IsNullOrEmpty(dr["ATTACH_2"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_2"].ToString())));
+					}
+					else if(!string.IsNullOrEmpty(dr["CANYUQINGKUANG"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["CANYUQINGKUANG"].ToString()));
+					}
+					else
+					{
+						sb.Append("<td class=\"txt_02\">&nbsp;</td>");
+					}
+					
+					if(!string.IsNullOrEmpty(dr["ATTACH_3"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_3"].ToString())));
+					}
+					else if(!string.IsNullOrEmpty(dr["PRJCN"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["PRJCN"].ToString()));
+					}
+					else
+					{
+						sb.Append("<td class=\"txt_02\">&nbsp;</td>");
+					}
+					sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}&nbsp;</td><td class=\"txt_02\">{2}</td>", 
+					dr["SHENPIJD"].ToString(),dr["YUANYIN"].ToString(),dr["gkstatus"].ToString()));
+                    //sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}</td><td class=\"txt_02\">{7}</td><td class=\"txt_02\"><a target=\"_blank\" href=\"{12}\">点击查看</a></td><td class=\"txt_02\">{8}</td><td class=\"txt_02\">{9}</td><td class=\"txt_02\">{10}&nbsp;</td><td class=\"txt_02\">{11}</td>",
+                    //dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPUNIT"].ToString(), dr["begindate"].ToString(),dr["enddate"].ToString(),dr["PRJPROFILE"].ToString(),dr["PRJCS"].ToString(),dr["CANYUQINGKUANG"].ToString(),dr["SHENPIJD"].ToString(),dr["YUANYIN"].ToString(),dr["gkstatus"].ToString(), GetAttachmentPath(dr["ATTACH_3"].ToString())));
                 }
                 else if (cid=="89")
                 {
@@ -467,8 +508,26 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
                 }
                 else if (cid=="91")
                 {
-                    sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}&nbsp;</td><td class=\"txt_02\"><a target=\"_blank\" href=\"{10}\">点击查看</a></td><td class=\"txt_02\">{7}&nbsp;</td><td class=\"txt_02\">{8}&nbsp;</td><td class=\"txt_02\">{9}</td>",
-                    dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPCHECKACCEPTUNIT"].ToString(),dr["begindate"].ToString(),dr["enddate"].ToString(),dr["CANYUQINGKUANG"].ToString(),dr["SHENPIJD"].ToString(),dr["YUANYIN"].ToString(),dr["gkstatus"].ToString(), GetAttachmentPath(dr["ATTACH_2"].ToString())));
+					sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}&nbsp;</td>",
+					dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPCHECKACCEPTUNIT"].ToString(),dr["begindate"].ToString(),dr["enddate"].ToString(),""));
+                    
+					if(!string.IsNullOrEmpty(dr["ATTACH_2"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_2"].ToString())));
+					}
+					else if(!string.IsNullOrEmpty(dr["CANYUQINGKUANG"].ToString()))
+					{
+						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["CANYUQINGKUANG"].ToString()));
+					}
+					else
+					{
+						sb.Append("<td class=\"txt_02\">&nbsp;</td>");
+					}
+					sb.Append(string.Format("<td class=\"txt_02\">{0}&nbsp;</td><td class=\"txt_02\">{1}&nbsp;</td><td class=\"txt_02\">{2}</td>",
+					dr["SHENPIJD"].ToString(),dr["YUANYIN"].ToString(),dr["gkstatus"].ToString()));
+					
+					//sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}&nbsp;</td><td class=\"txt_02\"><a target=\"_blank\" href=\"{10}\">点击查看</a></td><td class=\"txt_02\">{7}&nbsp;</td><td class=\"txt_02\">{8}&nbsp;</td><td class=\"txt_02\">{9}</td>",
+                    //dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPCHECKACCEPTUNIT"].ToString(),dr["begindate"].ToString(),dr["enddate"].ToString(),dr["CANYUQINGKUANG"].ToString(),dr["SHENPIJD"].ToString(),dr["YUANYIN"].ToString(),dr["gkstatus"].ToString(), GetAttachmentPath(dr["ATTACH_2"].ToString())));
                 }
                 else if (cid=="92")
                 {
@@ -488,22 +547,22 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
         switch(cid)
 		{
 		    case "87":
-		        str="<td width=\"144\" class=\"txt_01\">项目名称</td><td width=\"130\" class=\"txt_01\">建设地点</td><td width=\"70\" class=\"txt_01\">建设单位</td><td class=\"txt_01\">环评形式</td><td width=\"82\" class=\"txt_01\">环境影响评价机构</td><td width=\"88\" class=\"txt_01\">公示时间</td><td width=\"66\" class=\"txt_01\">公示状态</td>";
+		        str="<th width=\"144\" class=\"txt_01\">项目名称</th><th width=\"130\" class=\"txt_01\">建设地点</th><th width=\"70\" class=\"txt_01\">建设单位</th><th class=\"txt_01\">环评形式</th><th width=\"82\" class=\"txt_01\">环境影响评价机构</th><th width=\"88\" class=\"txt_01\">公示时间</th><th width=\"66\" class=\"txt_01\">公示状态</th>";
 		        break;
 		    case "88":
-		        str="<td width=\"26\" class=\"txt_01\">项目<br>名称</td><td width=\"26\" class=\"txt_01\">建设<br>地点</td><td width=\"26\" class=\"txt_01\">建设<br>单位</td><td width=\"35\" class=\"txt_01\">环境影响评价机构</td><td width=\"40\" class=\"txt_01\">公示<br>时间</td><td width=\"120\" class=\"txt_01\">建设项<br>目概况</td><td width=\"51\" class=\"txt_01\">主要环境影响及预防或者减轻不良环境影响的对策和措施</td><td width=\"75\" class=\"txt_01\">公众参<br>与情况</td><td width=\"51\" class=\"txt_01\">建设单位或地方政府所作出的相关环境保护措施承诺文件</td><td class=\"txt_01\">拟作<br>出的<br>审批<br>决定</td><td class=\"txt_01\">拟不<br>予批<br>准的<br>原因</td><td class=\"txt_01\">公示<br>状态</td>";
+		        str="<th width=\"26\" class=\"txt_01\">项目<br>名称</th><th width=\"26\" class=\"txt_01\">建设<br>地点</th><th width=\"26\" class=\"txt_01\">建设<br>单位</th><th width=\"35\" class=\"txt_01\">环境影响评价机构</th><th width=\"40\" class=\"txt_01\">公示<br>时间</th><th width=\"120\" class=\"txt_01\">建设项<br>目概况</th><th width=\"51\" class=\"txt_01\">主要环境影响及预防或者减轻不良环境影响的对策和措施</th><th width=\"75\" class=\"txt_01\">公众参<br>与情况</th><th width=\"51\" class=\"txt_01\">建设单位或地方政府所作出的相关环境保护措施承诺文件</th><th class=\"txt_01\">拟作<br>出的<br>审批<br>决定</th><th class=\"txt_01\">拟不<br>予批<br>准的<br>原因</th><th class=\"txt_01\">公示<br>状态</th>";
 		        break;
 		    case "89":
-		        str="<td class=\"txt_01\">项目名称</td><td class=\"txt_01\">建设地点</td><td class=\"txt_01\">建设单位</td><td class=\"txt_01\">环境影响评价机构</td><td class=\"txt_01\">批文名称</td><td class=\"txt_01\">批文号码</td><td class=\"txt_01\">批文时间</td><td class=\"txt_01\">批文内容</td><td class=\"txt_01\">公告时间</td>";
+		        str="<th class=\"txt_01\">项目名称</th><th class=\"txt_01\">建设地点</th><th class=\"txt_01\">建设单位</th><th class=\"txt_01\">环境影响评价机构</th><th class=\"txt_01\">批文名称</th><th class=\"txt_01\">批文号码</th><th class=\"txt_01\">批文时间</th><th class=\"txt_01\">批文内容</th><th class=\"txt_01\">公告时间</th>";
 		        break;
 		    case "90":
-		        str="<td width=\"144\" class=\"txt_01\">项目名称</td><td width=\"130\" class=\"txt_01\">建设地点</td><td width=\"70\" class=\"txt_01\">建设单位</td><td width=\"82\" class=\"txt_01\">验收监测（调查）单位</td><td width=\"88\" class=\"txt_01\">公示时间</td><td width=\"66\" class=\"txt_01\">公示状态</td>";
+		        str="<th width=\"144\" class=\"txt_01\">项目名称</th><th width=\"130\" class=\"txt_01\">建设地点</th><th width=\"70\" class=\"txt_01\">建设单位</th><th width=\"82\" class=\"txt_01\">验收监测（调查）单位</th><th width=\"88\" class=\"txt_01\">公示时间</th><th width=\"66\" class=\"txt_01\">公示状态</th>";
 		        break;
 		    case "91":
-		        str="<td width=\"144\" class=\"txt_01\">项目名称</td><td width=\"130\" class=\"txt_01\">建设地点</td><td width=\"70\" class=\"txt_01\">建设单位</td><td width=\"82\" class=\"txt_01\">验收监测（调查）单位</td><td width=\"43\" class=\"txt_01\">公示时间</td><td width=\"44\" class=\"txt_01\">环保措施落实情况</td><td width=\"88\" class=\"txt_01\">公众参与情况</td><td width=\"88\" class=\"txt_01\">拟做出的审批决定</td><td width=\"88\" class=\"txt_01\">拟验收不合格原因</td><td width=\"66\" class=\"txt_01\">公示状态</td>";
+		        str="<th width=\"144\" class=\"txt_01\">项目名称</th><th width=\"130\" class=\"txt_01\">建设地点</th><th width=\"70\" class=\"txt_01\">建设单位</th><th width=\"82\" class=\"txt_01\">验收监测（调查）单位</th><th width=\"43\" class=\"txt_01\">公示时间</th><th width=\"44\" class=\"txt_01\">环保措施落实情况</th><th width=\"88\" class=\"txt_01\">公众参与情况</th><th width=\"88\" class=\"txt_01\">拟做出的审批决定</th><th width=\"88\" class=\"txt_01\">拟验收不合格原因</th><th width=\"66\" class=\"txt_01\">公示状态</th>";
 		        break;
 		    case "92":
-		        str="<td width=\"144\" class=\"txt_01\">项目名称</td><td width=\"130\" class=\"txt_01\">建设地点</td><td width=\"70\" class=\"txt_01\">建设单位</td><td width=\"82\" class=\"txt_01\">验收监测（调查）单位</td><td width=\"43\" class=\"txt_01\">批文名称</td><td width=\"44\" class=\"txt_01\">批文号码</td><td width=\"88\" class=\"txt_01\">批文时间</td><td width=\"88\" class=\"txt_01\">批文内容</td><td width=\"88\" class=\"txt_01\">公告日期</td>";
+		        str="<th width=\"144\" class=\"txt_01\">项目名称</th><th width=\"130\" class=\"txt_01\">建设地点</th><th width=\"70\" class=\"txt_01\">建设单位</th><th width=\"82\" class=\"txt_01\">验收监测（调查）单位</th><th width=\"43\" class=\"txt_01\">批文名称</th><th width=\"44\" class=\"txt_01\">批文号码</th><th width=\"88\" class=\"txt_01\">批文时间</th><th width=\"88\" class=\"txt_01\">批文内容</th><th width=\"88\" class=\"txt_01\">公告日期</th>";
 		        break;
 		}
 	    return str;
