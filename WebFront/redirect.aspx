@@ -38,6 +38,9 @@
 				break;
 				
 			case "30":
+			Response.Redirect("sub_gkwry.aspx?cid="+cid);
+				break;
+				
 			case "31":
 			case "32":
 			case "33":
@@ -45,7 +48,7 @@
 				break;
 			
 			case "34":
-				Response.Redirect("sub_wuranfangzhi.aspx?cid=35");
+				Response.Redirect("sub_wuranfangzhi.aspx?cid="+cid);
 				break;
 				
 			case "45":
@@ -87,14 +90,16 @@
 			case "70":
 				Response.Redirect("sub_shiping.aspx?cid="+cid);
 				break;
-			case "999":
-			case "998":
-			case "997":
-			case "996":
-			case "995":
-			case "994":
+				
+			case "87":
+			case "88":
+			case "89":
+			case "90":
+			case "91":
+			case "92":
 			    Response.Redirect("sub_xxgk_gateway.aspx?cid="+cid);
 			    break;
+				
 			default:				
 				Response.Redirect("sub_newslist.aspx?cid="+cid);				
 				break; 

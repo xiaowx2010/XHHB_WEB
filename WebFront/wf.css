@@ -45,20 +45,20 @@ a:hover{color:#FF6600;}
 .de_gg_search .L_gg .sj ul li a{float:left; width:405px; font-size:12px; line-height:30px; color:#1E1E1E; padding-left:15px; background:url(images/de_top_012.gif) 5px 13px no-repeat; overflow:hidden;}
 .de_gg_search .L_gg .sj ul li a:hover{color:#ff6600; background:url(images/de_top_013.gif) 5px 13px no-repeat;}
 
-.de_gg_search .L_dqwz{width:523px;}
+.de_gg_search .L_dqwz{width:623px;}
 .de_gg_search .L_dqwz .bt{width:14px;}
-.de_gg_search .L_dqwz .sj{width:509px; height:30px; overflow:hidden;}
+.de_gg_search .L_dqwz .sj{width:609px; height:30px; overflow:hidden;}
 .de_gg_search .L_dqwz .sj dl{float:left; width:100%;}
 .de_gg_search .L_dqwz .sj dl dt{float:left; font-size:12px; line-height:30px; color:#1E1E1E;}
 .de_gg_search .L_dqwz .sj dl dd{float:left; background:url(images/de_top_018.gif) left 6px no-repeat; padding-left:20px;}
 .de_gg_search .L_dqwz .sj dl dd a{font-size:12px; line-height:28px; color:#1E1E1E;}
 .de_gg_search .L_dqwz .sj dl dd a:hover{color:#14810C;}
 
-.de_gg_search .R_search{width:410px;}
+.de_gg_search .R_search{width:310px;}
 .de_gg_search .R_search dl{float:left;}
 .de_gg_search .R_search dl dt{float:left;}
 .de_gg_search .R_search dl dd{float:left; padding-left:10px; padding-top:4px;}
-.de_gg_search .R_search dl dd .search_srk{float:left; width:300px; height:20px; font-size:12px; line-height:20px; color:#1E1E1E; border:1px solid #D9D9D9;}
+.de_gg_search .R_search dl dd .search_srk{float:left; width:200px; height:20px; font-size:12px; line-height:20px; color:#1E1E1E; border:1px solid #D9D9D9;}
 .de_gg_search .R_search dl dd .search_btn{float:left; width:53px; height:22px; overflow:hidden; background:url(images/de_top_015.gif) left top no-repeat; border:none;}
 
 .de_DL{width:742px;}
@@ -202,9 +202,9 @@ a:hover{color:#FF6600;}
 .Righttree dl{float:left; width:100%;  background:url(images/de_M_018.gif) bottom repeat-x;}
 .Righttree dl dt{float:left; width:162px; padding:0px 10px 0px 26px;}
 .Righttree dl dd{float:left; width:162px; padding:0px 10px 0px 26px;}
-.Righttree dl dt a{float:left; width:142px; padding:0px 0px 0px 20px; height:28px; overflow:hidden; background:url(images/left_submenu_01.gif) left 8px no-repeat; font-size:12px; line-height:28px; font-weight:bold; color:#14810C;}
+.Righttree dl dt a{float:left; width:142px; padding:5px 0px 5px 20px; overflow:hidden; background:url(images/left_submenu_01.gif) left 8px no-repeat; font-size:12px; line-height:18px; font-weight:bold; color:#14810C;}
 .Righttree dl dt a:hover{color:#14810C; background:url(images/left_submenu_01.gif) left 8px no-repeat;}
-.Righttree dl dd a{float:left; width:142px; padding:0px 0px 0px 20px; height:28px; overflow:hidden; background:url(images/left_submenu_02.gif) left 8px no-repeat; font-size:12px; line-height:28px; font-weight:bold; color:#535353;}
+.Righttree dl dd a{float:left; width:142px; padding:5px 0px 5px 20px; overflow:hidden; background:url(images/left_submenu_02.gif) left 8px no-repeat; font-size:12px; line-height:18px; font-weight:bold; color:#535353;}
 .Righttree dl dd a:hover{color:#14810C; background:url(images/left_submenu_01.gif) left 8px no-repeat;}
 
 .Right_links{margin-top:3px;}
@@ -316,7 +316,7 @@ a:hover{color:#FF6600;}
 .intro_fg_gz .intro_hbfg .nk_sj ul li a:hover{color:#ff6600; background:url(images/de_M_006.gif) 8px 11px no-repeat;}
 
 .shiping{margin-top:12px;}
-.shiping ul{width:600px; margin:0px auto;}
+.shiping ul{width:500px; margin:0px auto;}
 .shiping ul li{float:left; width:100%;}
 
 .sub_gd_shiping{ border-bottom:2px solid #D9D9D9; margin-top:10px;}
@@ -362,3 +362,8 @@ a:hover{color:#FF6600;}
 .sub_xxgk_hpsp_tab .txt_02 a:hover{color:#ff6600;}
 
 .sub_xxgk_hpsp .zm{margin-top:10px; font-size:12px; line-height:25px; color:#666666;}
+.top_link .M{width:150px; padding-left:230px; font-size:12px; line-height:30px; color:#1E1E1E;}
+
+
+
+

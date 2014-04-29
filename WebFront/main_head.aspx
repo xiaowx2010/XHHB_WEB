@@ -56,6 +56,9 @@ function SetHome(obj,vrl){
 	<li><a href="http://www.xuhui.gov.cn" target="_blank">上海徐汇</a></li>
    </ul>
   </div>
+  <div class="main M">
+   <!--#include file="date.aspx"-->
+  </div>
   <div class="side R">
    <ul>
     <!--<li><a href="#">站点地图</a></li>-->
@@ -83,7 +86,7 @@ function SetHome(obj,vrl){
     <td width="2"><img src="images/de_top_004.gif" width="2" height="39"></td>
     <td align="center"><a href="/webfront/default.aspx">&nbsp;首   页&nbsp;</a></td>
     <td width="2"><img src="images/de_top_007.gif" width="2" height="39"></td>
-    <td align="center"><a href="redirect.aspx?cid=994">环境影响评价</a></td>
+    <td align="center"><a href="redirect.aspx?cid=85">环境影响评价</a></td>
     <td width="2"><img src="images/de_top_007.gif" width="2" height="39"></td>
     <td align="center"><a href="sub_3nxdjh.aspx?cid=48">三年行动计划</a></td>
     <td width="2"><img src="images/de_top_007.gif" width="2" height="39"></td>

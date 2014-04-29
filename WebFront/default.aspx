@@ -57,8 +57,8 @@ foreach(DataRow aRow in dt.Rows)
 	  cid="5";
 	  listboxzcfg.DataTable=GetDataSql_4("25,26,76,77");
 	  
-	  cid="6";
-	  listboxwlfz.DataTable=GetDataSql_4("30,35,36,64");
+	  cid="47";
+	  listboxlscj.DataTable=GetDataSql_4("73,74");
 	  
 	  cid="10";
 	  listbox3nxdjh.DataTable=GetDataSql_4("48,49,78");
@@ -184,28 +184,8 @@ foreach(DataRow aRow in dt.Rows)
  <div class="main box pt10">
   <div class="main de_DL">
    <div class="main bkys_001">
-    <div class="main box lmys_003">
-	 <div class="main L">
-	  <dl><dt>污染防治</dt><dd><img src="images/de_M_011.gif"></dd></dl>
-	 </div>
-	 <div class="side R">
-	  <dl><dt><a href="redirect.aspx?cid=30">更多+</a></dt><dd><img src="images/de_M_013.gif"></dd></dl>
-	 </div>
-	</div>
-	<div class="main de_sjys_001">
-	 <ul>
-	  <!--污染防治文章列表--> 
-	  <G:ListBox id="listboxwlfz" rows="6" contentfield="chtopic" showchars="23" runat="server">
-      <G:Template id="Templatewlfz" runat="server">
-	   <li><a href="sub_news.aspx?cid=*&id=*">*</a></li>
-      </G:Template>
-      </G:ListBox>
-	  <!--污染防治文章列表--> 
-	 </ul>
-	</div>
-   </div>
-   <div class="side bkys_001">
-    <div class="main box lmys_003">
+    
+	<div class="main box lmys_003">
 	 <div class="main L">
 	  <dl><dt>三年行动计划</dt><dd><img src="images/de_M_011.gif"></dd></dl>
 	 </div>
@@ -224,6 +204,30 @@ foreach(DataRow aRow in dt.Rows)
 	   <!--三年行动计划文章列表--> 
 	 </ul>
 	</div>
+	
+   </div>
+   <div class="side bkys_001">
+    
+	<div class="main box lmys_003">
+	 <div class="main L">
+	  <dl><dt>辐射安全</dt><dd><img src="images/de_M_011.gif"></dd></dl>
+	 </div>
+	 <div class="side R">
+	  <dl><dt><a href="redirect.aspx?cid=83">更多+</a></dt><dd><img src="images/de_M_013.gif"></dd></dl>
+	 </div>
+	</div>
+	<div class="main de_sjys_001">
+	 <ul>
+	  <!--辐射安全文章列表--> 
+	   <G:ListBox id="ListBoxfsaq" rows="6" contentfield="chtopic" showchars="23" runat="server">
+       <G:Template id="Templatefsaq" runat="server">
+		<li><a href="sub_news.aspx?cid=*&id=*">*</a></li>
+	   </G:Template>
+       </G:ListBox>
+	   <!--辐射安全文章列表--> 
+	 </ul>
+	</div>
+	
    </div>
   </div>
   <div class="side de_DR">
@@ -232,7 +236,7 @@ foreach(DataRow aRow in dt.Rows)
 	 <ul>
 	  <li><a href="/webfront/sub_xxgk_jsxmspcx.aspx?cid=57"><img src="images/de_M_007.jpg"></a></li>
 	  <li><a href="/webfront/sub_yejianshigong.aspx?cid=58"><img src="images/de_M_008.jpg"></a></li>
-	  <li><a href="/webfront/sub_newslist.aspx?cid=82"><img src="images/de_M_009.jpg"></a></li>
+	  <li><a href="/webfront/redirect.aspx?cid=85"><img src="images/de_M_009.jpg"></a></li>
 	  <li><a href="/webfront/sub_newslist.aspx?cid=20"><img src="images/de_M_010.jpg"></a></li>
 	  <li><a href="/webfront/sub_newslist.aspx?cid=19"><img src="images/de_M_011.jpg"></a></li>
 	 </ul>
@@ -253,7 +257,7 @@ foreach(DataRow aRow in dt.Rows)
    </ul>
   </div>
   <div class="side de_DR de_M_picbtn02">
-   <a href="http://epb.xh.sh.cn/xuhuihuanbaogis_2006/speedmap/speedmap.aspx" target="_blank"><img src="images/de_M_015.jpg"></a>
+   <a href="/xuhuihuanbaogis_2006/speedmap/speedmap.aspx" target="_blank"><img src="images/de_M_015.jpg"></a>
   </div>
  </div>
  <div class="clear"></div>
@@ -284,25 +288,27 @@ foreach(DataRow aRow in dt.Rows)
 	</div>
    </div>
    <div class="side bkys_001">
-    <div class="main box lmys_003">
+    
+	<div class="main box lmys_003">
 	 <div class="main L">
-	  <dl><dt>辐射安全</dt><dd><img src="images/de_M_011.gif"></dd></dl>
+	  <dl><dt>绿色创建</dt><dd><img src="images/de_M_011.gif"></dd></dl>
 	 </div>
 	 <div class="side R">
-	  <dl><dt><a href="redirect.aspx?cid=83">更多+</a></dt><dd><img src="images/de_M_013.gif"></dd></dl>
+	  <dl><dt><a href="redirect.aspx?cid=47">更多+</a></dt><dd><img src="images/de_M_013.gif"></dd></dl>
 	 </div>
 	</div>
 	<div class="main de_sjys_001">
 	 <ul>
-	  <!--辐射安全文章列表--> 
-	   <G:ListBox id="ListBoxfsaq" rows="6" contentfield="chtopic" showchars="23" runat="server">
-       <G:Template id="Templatefsaq" runat="server">
-		<li><a href="sub_news.aspx?cid=*&id=*">*</a></li>
-	   </G:Template>
-       </G:ListBox>
-	   <!--辐射安全文章列表--> 
+	  <!--污染防治文章列表--> 
+	  <G:ListBox id="listboxlscj" rows="6" contentfield="chtopic" showchars="23" runat="server">
+      <G:Template id="Templatelscj" runat="server">
+	   <li><a href="sub_news.aspx?cid=*&id=*">*</a></li>
+      </G:Template>
+      </G:ListBox>
+	  <!--污染防治文章列表--> 
 	 </ul>
 	</div>
+	
    </div>
   </div>
   <div class="side de_DR">

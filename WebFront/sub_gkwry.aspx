@@ -22,6 +22,7 @@
 		    id = GetQueryString("id","0");
 			HeadXuHui.ChannelCode=cid;
 			TraceUpXuHui.ChannelCode=cid;
+			LeftFree.Url="tree.aspx?cid="+cid;
 
 //			ListBoxlb.SqlStr="select "+cid+",chcode,chtopic,cast(datepart(year,chputdate) as varchar(50))+'-'+(Case When datepart(month,chputdate)<10 Then '0' Else '' End)+cast(datepart(month,chputdate) as varchar(50))+'-'+(Case When datepart(day,chputdate)<10 Then '0' Else '' End)+cast(datepart(day,chputdate) as varchar(50)) as chdate from "+GetChannelDataTableName(cid)+" where chstate=0 order by chputdate desc";
             list.SqlStr="select entName, portName, convert(varchar(10),monitorTime,120) as monitorTime,flow,factorName,factorValue,standard from sync_sewage order by monitorTime desc";
@@ -71,7 +72,7 @@
    <div class="main nk">
     <div class="main box sub_lmys_001">
 	 <dl>
-	  <dt>污水处理厂国家重点监控企业名单</dt>
+	  <dt><%=GetChannelName(cid)%></dt>
 	  <dd></dd>
 	 </dl>
 	</div>
@@ -79,8 +80,9 @@
      <div class="main box bt">污水处理厂国家重点监控企业名单</div>
 	 <div class="main box sub_xxgk_hpsp_tab">
 	 <G:ListTable ID="list" Rows="20"  runat="server">
-            <G:Template id="listtemphead" type="head" runat="server">
-                 <table id="content-table" class="content-table" width="100%"  border="0" cellpadding="5" cellspacing="1" bgcolor="#71BE5E">
+	 <G:Template id="listtemphead" type="head" runat="server">
+        <table id="content-table" class="content-table" width="100%"  border="0" cellpadding="5" cellspacing="1" bgcolor="#71BE5E">
+				 
                    <thead>
                    <tr class="fl">
                       <th width="144" class="txt_01">企业名称</th>
@@ -104,7 +106,7 @@
                   <td class="txt_02">*</td>
               </tr>
             </G:Template>
-
+           
         </G:ListTable>
 
 	  </div>
@@ -120,14 +122,13 @@
   </div>
   <div class="side sub_R">
    <div class="main box right_topbg"></div>
-   <div class="main Righttree">
+   <div class="main Righttree"><G:Include id="LeftFree" runat="server" url=""></G:Include></div>
+   <div class="main box Right_links">
     <ul>
-     <li><a href="#" class="dq">国控污染源监测信息</a></li>
-	 <li><a href="#">重点监管单位动态</a></li>
-
-    </ul>
+	 <li><a href="sub_news.aspx?cid=63&id=4" target="_blank"><img src="images/de_M_018.jpg"></a></li>
+	 <li><a href="/webfront/intro_hudong_02.aspx" target="_blank"><img src="images/de_M_019.jpg"></a></li>
+	</ul>
    </div>
-
 
   </div>
  </div>

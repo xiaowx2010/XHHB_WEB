@@ -63,7 +63,7 @@
   <ul>
    <li>
 <!---->
-<iframe src="http://xxgk.xh.sh.cn/WebSite/HTML/xhxxml/wjzndbg/List/list_0.htm" id="iframepage" name="iframepage" frameBorder=0  width="980" height="600"></iframe>
+<iframe src="http://xxgk.xh.sh.cn/WebSite/HTML/xhxxgk/xxgk_hbj_ndbg/Info/Detail_10723.htm" id="iframepage" name="iframepage" frameBorder=0  width="980" height="600"></iframe>
    </li>
   </ul>
  </div>

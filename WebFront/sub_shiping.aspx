@@ -69,12 +69,12 @@
 	  <li>
 	  
 	  
-	<OBJECT ID="WMPlay" width="600" height="420" classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95"
+	<OBJECT ID="WMPlay" width="500" height="420" classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95"
 codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
 standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject"
 VIEWASTEXT>
 <PARAM name="FileName" value="<%=filmname%>">
-<PARAM name="DisplaySize" value="0">
+<PARAM name="DisplaySize" value="1">
 <PARAM NAME="ShowStatusBar" VALUE="1">
 <EMBED type="application/x-mplayer2" pluginspage="http://www.microsoft.com/isapi/redir.dll?prd=windows&sbp=mediaplayer&ar=media&sba=plugin"filename="<%=filmname%>" displaysize="0" ShowStatusBar=1 width="600" height="420"></EMBED>
 </OBJECT>
