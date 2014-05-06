@@ -403,7 +403,7 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
 		        selectstr = "SUBJECT,ADDRESS,BUILDERUNIT,APPLYITEM,HPUNIT,convert(varchar(10),GONGSHIBEGINDATE,120) as begindate,convert(varchar(10),GONGSHIENDDATE,120) as enddate,case when getdate()>GONGSHIENDDATE then '已失效' else '公示中' end as gkstatus,ATTACH_1";
 		        break;
 		    case "88":
-		        wherestr=" and GONGSHITYPE = '拟作出审批意见情况' ";
+		        wherestr=" and GONGSHITYPE = '拟作出审批意见情况' and applyitem not like '%验收%' ";
 		        selectstr = "SUBJECT,ADDRESS,BUILDERUNIT,HPUNIT,convert(varchar(10),GONGSHIBEGINDATE,120) as begindate,convert(varchar(10),GONGSHIENDDATE,120) as enddate,PRJPROFILE,PRJCS,ATTACH_5,CANYUQINGKUANG,ATTACH_2,ATTACH_3,PRJCN,SHENPIJD,YUANYIN,case when getdate()>GONGSHIENDDATE then '已失效' else '公示中' end as gkstatus";
 		        break;
 		    case "89":
@@ -415,7 +415,7 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
 		        selectstr = "SUBJECT,ADDRESS,BUILDERUNIT,HPCHECKACCEPTUNIT,convert(varchar(10),GONGSHIBEGINDATE,120) as begindate,convert(varchar(10),GONGSHIENDDATE,120) as enddate,case when getdate()>GONGSHIENDDATE then '已失效' else '公示中' end as gkstatus,ATTACH_1";
 		        break;
 		    case "91":
-		        wherestr=" and GONGSHITYPE = '拟作出审批意见情况' ";
+		        wherestr=" and GONGSHITYPE = '拟作出审批意见情况' and applyitem like '%验收%' ";
 		        selectstr = "SUBJECT,ADDRESS,BUILDERUNIT,HPCHECKACCEPTUNIT,convert(varchar(10),GONGSHIBEGINDATE,120) as begindate,convert(varchar(10),GONGSHIENDDATE,120) as enddate,CANYUQINGKUANG,SHENPIJD,YUANYIN,case when getdate()>GONGSHIENDDATE then '已失效' else '公示中' end as gkstatus,ATTACH_2";
 		        break;
 		    case "92":
@@ -454,11 +454,13 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
                 {
 					sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}</td>", 
 					dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPUNIT"].ToString(), dr["begindate"].ToString(),dr["enddate"].ToString(),dr["PRJPROFILE"].ToString()));
-					if(!string.IsNullOrEmpty(dr["ATTACH_5"].ToString()))
+					//if(!string.IsNullOrEmpty(dr["ATTACH_5"].ToString()))
+					if(dr["ATTACH_5"] != null && dr["ATTACH_5"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_5"].ToString())));
 					}
-					else if(!string.IsNullOrEmpty(dr["PRJCS"].ToString()))
+					//else if(!string.IsNullOrEmpty(dr["PRJCS"].ToString()))
+					else if(dr["PRJCS"] != null && dr["PRJCS"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["PRJCS"].ToString()));
 					}
@@ -466,11 +468,13 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
 					{
 						sb.Append("<td class=\"txt_02\">&nbsp;</td>");
 					}
-					if(!string.IsNullOrEmpty(dr["ATTACH_2"].ToString()))
+					//if(!string.IsNullOrEmpty(dr["ATTACH_2"].ToString()))
+					if(dr["ATTACH_2"] != null && dr["ATTACH_2"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_2"].ToString())));
 					}
-					else if(!string.IsNullOrEmpty(dr["CANYUQINGKUANG"].ToString()))
+					//else if(!string.IsNullOrEmpty(dr["CANYUQINGKUANG"].ToString()))
+					else if(dr["CANYUQINGKUANG"] != null && dr["CANYUQINGKUANG"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["CANYUQINGKUANG"].ToString()));
 					}
@@ -479,11 +483,13 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
 						sb.Append("<td class=\"txt_02\">&nbsp;</td>");
 					}
 					
-					if(!string.IsNullOrEmpty(dr["ATTACH_3"].ToString()))
+					//if(!string.IsNullOrEmpty(dr["ATTACH_3"].ToString()))
+					if(dr["ATTACH_3"] != null && dr["ATTACH_3"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_3"].ToString())));
 					}
-					else if(!string.IsNullOrEmpty(dr["PRJCN"].ToString()))
+					//else if(!string.IsNullOrEmpty(dr["PRJCN"].ToString()))
+					else if(dr["PRJCN"] != null && dr["PRJCN"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["PRJCN"].ToString()));
 					}
@@ -511,11 +517,13 @@ private DataTable GetPicPath(string cid,int rowcount)	//rowcount=0 返回所有行
 					sb.Append(string.Format("<td class=\"txt_02\">{0}</td><td class=\"txt_02\">{1}</td><td class=\"txt_02\">{2}</td><td class=\"txt_02\">{3}</td><td class=\"txt_02\">{4}~{5}</td><td class=\"txt_02\">{6}&nbsp;</td>",
 					dr["SUBJECT"].ToString(), dr["ADDRESS"].ToString(), dr["BUILDERUNIT"].ToString(),dr["HPCHECKACCEPTUNIT"].ToString(),dr["begindate"].ToString(),dr["enddate"].ToString(),""));
                     
-					if(!string.IsNullOrEmpty(dr["ATTACH_2"].ToString()))
+					//if(!string.IsNullOrEmpty(dr["ATTACH_2"].ToString()))
+					if(dr["ATTACH_2"] != null && dr["ATTACH_2"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\"><a target=\"_blank\" href=\"{0}\">点击查看</a></td>", GetAttachmentPath(dr["ATTACH_2"].ToString())));
 					}
-					else if(!string.IsNullOrEmpty(dr["CANYUQINGKUANG"].ToString()))
+					//else if(!string.IsNullOrEmpty(dr["CANYUQINGKUANG"].ToString()))
+					else if(dr["CANYUQINGKUANG"] != null && dr["CANYUQINGKUANG"].ToString() != "")
 					{
 						sb.Append(string.Format("<td class=\"txt_02\">{0}</td>", dr["CANYUQINGKUANG"].ToString()));
 					}
