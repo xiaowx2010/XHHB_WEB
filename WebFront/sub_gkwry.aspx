@@ -23,9 +23,15 @@
 			HeadXuHui.ChannelCode=cid;
 			TraceUpXuHui.ChannelCode=cid;
 			LeftFree.Url="tree.aspx?cid="+cid;
+            if (GetQueryString("ShowAll", "0") == "1")
+            {
+                list.SqlStr = "select entName, portName, convert(varchar(10),monitorTime,120) as monitorTime,flow,factorName,factorValue,standard from sync_sewage order by monitorTime desc";
+            }
+            else
+                list.SqlStr = "select top 1000 entName, portName, convert(varchar(10),monitorTime,120) as monitorTime,flow,factorName,factorValue,standard from sync_sewage order by monitorTime desc";
 
 //			ListBoxlb.SqlStr="select "+cid+",chcode,chtopic,cast(datepart(year,chputdate) as varchar(50))+'-'+(Case When datepart(month,chputdate)<10 Then '0' Else '' End)+cast(datepart(month,chputdate) as varchar(50))+'-'+(Case When datepart(day,chputdate)<10 Then '0' Else '' End)+cast(datepart(day,chputdate) as varchar(50)) as chdate from "+GetChannelDataTableName(cid)+" where chstate=0 order by chputdate desc";
-            list.SqlStr="select entName, portName, convert(varchar(10),monitorTime,120) as monitorTime,flow,factorName,factorValue,standard from sync_sewage order by monitorTime desc";
+            
             list.Rows = list.DataTable.Rows.Count;
 		}
 	</script>
@@ -77,7 +83,7 @@
 	 </dl>
 	</div>
 	<div class="main box sub_xxgk_hpsp">
-     <div class="main box bt">污水处理厂国家重点监控企业名单</div>
+     <div class="main box bt">污水处理厂国家重点监控企业名单（<a href="sub_gkwry.aspx?cid=30">最新1000条</a>）<a href="sub_gkwry.aspx?cid=30&ShowAll=1">查看所有</a></div>
 	 <div class="main box sub_xxgk_hpsp_tab">
 	 <G:ListTable ID="list" Rows="20"  runat="server">
 	 <G:Template id="listtemphead" type="head" runat="server">
